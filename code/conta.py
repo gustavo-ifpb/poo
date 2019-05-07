@@ -3,6 +3,10 @@ class Conta:
     numero = '0000-00'
     saldo = 0
 
+    def __init__(self, numero, saldo=0):
+        self.numero = numero
+        self.saldo = saldo
+
     def deposito(self, valor):
         self.saldo += valor
 
@@ -20,12 +24,11 @@ class Conta:
             print('Impossível realizar transferencia, conta sem fundos!')
 
 if __name__ == '__main__':
-    c1 = Conta()
-    c1.numero = '0001-00'
+    numeroConta = input('Digite o número da conta: ')
+    c1 = Conta(numeroConta)
     c1.deposito(100)
 
-    c2 = Conta()
-    c2.numero = '0002-00'
+    c2 = Conta('0002-00', 200)
     c2.saque(30)
     c2.deposito(200)
 
