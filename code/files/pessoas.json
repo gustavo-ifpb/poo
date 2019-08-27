@@ -1,0 +1,27 @@
+{
+    "pessoas": [{
+        "nome": "Gustavo",
+        "telefone": "83999999",
+        "email": "gustavo.vieira@ifpb.edu.br",
+        "sexo": "M",
+        "idade": 32
+    },{
+        "nome": "Maria",
+        "telefone": "839922999",
+        "email": "maria@ifpb.edu.br",
+        "sexo": "F",
+        "idade": 30
+    },{
+        "nome": "Josefina",
+        "telefone": "8499922",
+        "email": "josefina@ifpb.edu.br",
+        "sexo": "F",
+        "idade": 29
+    },{
+        "nome": "Joao",
+        "telefone": "83222222",
+        "email": null,
+        "sexo": "M",
+        "idade": 40
+    }]
+}
