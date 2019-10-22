@@ -75,22 +75,76 @@ class StudentForm(tk.Frame):
     def itemSelected(self):
         print('Algum item foi selecionado')
 
+class StudentView(tk.Frame):
+
+    def __init__(self, master, student):
+        tk.Frame.__init__(self, master)
+
+        self.controller = master
+
+        # Back button
+        backButton = tk.Button(self, text='Voltar', width=20, command=self.back)
+        backButton.pack(fill=tk.X, ipady=5)
+
+        # Matrícula
+        idLabel = tk.Label(self, text="Matrícula", bg="gray", fg="white")
+        idLabel.pack(fill=tk.X, ipady=5)
+
+        idLabel = tk.Label(self, text=student.id)
+        idLabel.pack(fill=tk.X, ipady=5)
+
+        # Matrícula
+        idLabel = tk.Label(self, text="Nome", bg="gray", fg="white")
+        idLabel.pack(fill=tk.X, ipady=5)
+
+        idLabel = tk.Label(self, text=student.name)
+        idLabel.pack(fill=tk.X, ipady=5)
+
+        # Matrícula
+        idLabel = tk.Label(self, text="Email", bg="gray", fg="white")
+        idLabel.pack(fill=tk.X, ipady=5)
+
+        idLabel = tk.Label(self, text=student.email)
+        idLabel.pack(fill=tk.X, ipady=5)
+
+        # Matrícula
+        idLabel = tk.Label(self, text="Gênero", bg="gray", fg="white")
+        idLabel.pack(fill=tk.X, ipady=5)
+
+        idLabel = tk.Label(self, text=student.gender)
+        idLabel.pack(fill=tk.X, ipady=5)
+
+        if student.gender == 0:
+            idLabel['text'] = 'Masculino'
+        elif student.gender == 1:
+            idLabel['text'] = 'Feminino'
+        else:
+            idLabel['text'] = 'Não binário'
+
+    def back(self):
+        self.controller.changeScreen(StudentsList(self.controller))
+        self.destroy()
+
 
 class StudentsList(tk.Frame):
 
     def __init__(self, master):
         tk.Frame.__init__(self, master)
 
-        ''' Listbox '''
-        self.students = ['Filipe', 'Gabriel', 'Vitórias', 'Ester']
+        # Referência para SUAP
+        self.controller = master
 
+        ''' Listbox '''
         self.studentListbox = tk.Listbox(self)
         self.studentListbox.pack(fill=tk.X)
         self.studentListbox.bind('<Double-Button-1>', self.itemClicked)
 
-        for student in self.students:
-            self.studentListbox.insert(tk.END, student)
+        for student in self.controller.students:
+            self.studentListbox.insert(tk.END, student.name)
     
     def itemClicked(self, selection):
-        # print(f'{self.studentListbox.curselection()} foi selecionado') # (index, )
-        print(f'{self.students[self.studentListbox.curselection()[0]]} foi selecionado')
+        student = self.controller.students[self.studentListbox.curselection()[0]]
+        self.controller.changeScreen(StudentView(self.controller, student))
+        self.destroy()
+
+        # self.controller.wait_window(StudentView(self.controller, student))
